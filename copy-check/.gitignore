@@ -1,0 +1,15 @@
+/store/
+/moss-input/
+/moss-output/
+/tmp/
+*swp
+*swo
+*~
+*.Z
+*.zip
+*.gz
+*.bz2
+*.tgz
+*.tbz2
+*.o
+*.tmp

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#
+# Reset state of folders. Remove generated files in $INPUT and $OUTPUT.
+#
+# 2011, Razvan Deaconescu, razvan.deaconescu@cs.pub.ro
+#
+
+usage()
+{
+    echo "Usage: $0 [assigment]" 1>&2
+    echo -e "\t\`assigment\' may be 0lin, 1lin, 1win, 2lin, 2win, 3lin, 3win, 4lin, 4win, 5lin, 5win" 1>&2
+    echo -e "\tIn case \`assignment\' is not present go through all." 1>&2
+    echo
+}
+
+if test $# -gt 1; then
+    usage
+    exit 1
+fi
+
+BASEDIR=$(dirname $0)
+source "$BASEDIR"/copy-check.conf
+
+INPUT_PATH="$BASEDIR"/"$INPUT"
+OUTPUT_PATH="$BASEDIR"/"$OUTPUT"
+
+# By default, remove generate files in all assigments. In case argument is
+# passed to script, remove files pertaining to the given assignment.
+assig_list="0lin 1lin 1win 2lin 2win 3lin 3win 4lin 4win 5lin 5win"
+if test $# -ge 1; then
+    assig_list="$@"
+fi
+
+# Go through all assignments.
+for assig in $assig_list; do
+    rm -fr "$INPUT_PATH"/"$assig"
+    rm -f "$OUTPUT_PATH"/"$assig".log
+done

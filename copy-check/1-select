@@ -1,0 +1,446 @@
+#!/bin/bash
+
+#
+# Select C/C++ source files to be sent for checking in Moss.
+#
+# 2011, Razvan Deaconescu, razvan.deaconescu@cs.pub.ro
+#   based on previous work by Octavian Purdila
+#
+
+select_0lin()
+{
+    find $STORE_PATH/2010-2011 -path "*/0-HashTable-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+}
+
+select_1lin()
+{
+    find $STORE_PATH/2002-2003 -path "*/tema2/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2003-2004 -path "*/tema1/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema1/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "misc.c" -or -iname "*parser*"  -or -iname "*parser*" \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema1/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "misc.c" -or -iname "*parser*"  -or -iname "*parser*" \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema1/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*parser*" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema1/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*parser*" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema1/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*parser*" \)
+
+    find $STORE_PATH/2008-2009 -path "*/1-minishell-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \
+        \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*parser*" \)
+
+    find $STORE_PATH/2009-2010 -path "*/1-minishell-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*parser*" \)
+
+    find $STORE_PATH/2010-2011 -path "*/1-minishell-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*parser*" \)
+}
+
+select_1win()
+{
+    find $STORE_PATH/2003-2004 -path "*/tema1/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema1/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema1/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema1/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema1/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema1/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+
+    find $STORE_PATH/2008-2009 -path "*/1-minishell-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+
+    find $STORE_PATH/2009-2010 -path "*/1-minishell-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+
+    find $STORE_PATH/2010-2011 -path "*/1-minishell-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "parser.tab.c" -or -iname "lex.yy.c" -or \
+        -iname "mem.c" -or -iname "resources.c" -or \
+        -iname "DisplayStructure.c*" -or \
+        -iname "misc.c" -or -iname "*parser*" -or -iname "*lexer*" \)
+}
+
+select_2lin()
+{
+    find $STORE_PATH/2006-2007 -path "*/tema2/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema2/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema2/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2008-2009 -path "*/2-ipc-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2009-2010 -path "*/2-ipc-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2010-2011 -path "*/2-crypto-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+}
+
+select_2win()
+{
+    find $STORE_PATH/2006-2007 -path "*/tema2/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema2/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema2/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2008-2009 -path "*/2-ipc-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2009-2010 -path "*/2-ipc-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2010-2011 -path "*/2-crypto-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+}
+
+select_3lin()
+{
+    find $STORE_PATH/2003-2004 -path "*/tema5/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema5/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema5/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema5/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema5/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema3/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2008-2009 -path "*/3-vm-lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2009-2010 -path "*/3-vm-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2010-2011 -path "*/3-vm-lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "test.c" -or -iname "common_*" -or \
+        -iname "vmsim_test*" \)
+}
+
+select_3win()
+{
+    find $STORE_PATH/2003-2004 -path "*/tema5/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema5/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema5/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema5/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema5/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema3/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2008-2009 -path "*/3-vm-win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2009-2010 -path "*/3-vm-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and ! \( -iname "test.c"  \)
+
+    find $STORE_PATH/2010-2011 -path "*/3-vm-win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "test.c" -or -iname "common_*" -or \
+        -iname "vmsim_test*" \)
+}
+
+select_4lin()
+{
+    find $STORE_PATH/2002-2003 -path "*/tema6/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2003-2004 -path "*/tema3/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema3/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema3/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema3/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema3/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema4/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2008-2009 -path "*/4-monitor-lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2009-2010 -path "*/4-monitor-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2010-2011 -path "*/4-monitor-lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+}
+
+select_4win()
+{
+    find $STORE_PATH/2002-2003 -path "*/tema6/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2003-2004 -path "*/tema3/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema3/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema3/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema3/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema3/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema4/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2008-2009 -path "*/4-monitor-win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+
+    find $STORE_PATH/2009-2010 -path "*/4-monitor-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+
+    find $STORE_PATH/2010-2011 -path "*/4-monitor-win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "Control*" -or -iname "Test*" \)
+}
+
+select_5lin()
+{
+    find $STORE_PATH/2003-2004 -path "*/tema4/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema4/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema4/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema4/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema4/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema5/lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2008-2009 -path "*/5-asyncio-lin/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "sock_util*" -or -iname "test*" -or \
+        -iname "http_parser*" \)
+
+    find $STORE_PATH/2009-2010 -path "*/5-fileserver-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "sock_util*" -or -iname "test*" -or \
+        -iname "http_parser*" \)
+
+    find $STORE_PATH/2010-2011 -path "*/5-aws-linux/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "sock_util*" -or -iname "test*" -or \
+        -iname "http_parser*" \)
+}
+
+select_5win()
+{
+    find $STORE_PATH/2003-2004 -path "*/tema4/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2004-2005 -path "*/tema4/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2005-2006 -path "*/tema4/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2006-2007 -path "*/tema4/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008 -path "*/tema4/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2007-2008s2 -path "*/tema5/win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \)
+
+    find $STORE_PATH/2008-2009 -path "*/5-asyncio-win/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "sock_util*" -or -iname "test*" -or \
+        -iname "http_parser*" \)
+
+    find $STORE_PATH/2009-2010 -path "*/5-fileserver-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "sock_util*" -or -iname "test*" -or \
+        -iname "http_parser*" \)
+
+    find $STORE_PATH/2010-2011 -path "*/5-aws-windows/*" \
+        \( -iname "*.c" -or -iname "*.cpp" \) -and \
+        ! \( -iname "sock_util*" -or -iname "test*" -or \
+        -iname "http_parser*" \)
+}
+
+usage()
+{
+    echo "Usage: $0 [assigment]" 1>&2
+    echo -e "\t\`assigment\' may be 0lin, 1lin, 1win, 2lin, 2win, 3lin, 3win, 4lin, 4win, 5lin, 5win" 1>&2
+    echo -e "\tIn case \`assignment\' is not present go through all." 1>&2
+    echo
+}
+
+if test $# -gt 1; then
+    usage
+    exit 1
+fi
+
+
+BASEDIR=$(dirname $0)
+source "$BASEDIR"/copy-check.conf
+
+STORE_PATH="$BASEDIR"/"$STORE"
+SELECT_TMP_PATH="$BASEDIR"/"$SELECT_TMP"
+INPUT_PATH="$BASEDIR"/"$INPUT"
+
+
+# By default, select soure code files in all assigments. In case argument
+# is passed to script, select file pertaining to the given assignment.
+assig_list="0lin 1lin 1win 2lin 2win 3lin 3win 4lin 4win 5lin 5win"
+
+if test $# -ge 1; then
+    assig_list="$@"
+fi
+
+# Additionally store selected list of source code files in temporary file.
+> "$SELECT_TMP_PATH"
+
+# Pass through assigment list and call appropiate select function.
+for assig in $assig_list; do
+    echo "Going through $assig ..." 1>&2
+
+    select_$assig | tee --append "$SELECT_TMP_PATH" | \
+        while read line; do
+            # Create "context" folder (assignment id, student name, year).
+            dir=$(dirname "$line")
+            dir=${dir/"$STORE_PATH"\//}
+            dir=${dir// /}
+            mkdir -p "$INPUT_PATH"/"$assig"/"$dir" 2> /dev/null
+
+            # Create hardlink. Do not waste space by copying file.
+            base=$(basename "$line")
+            base=${base// /}
+            ln -f "$line" "$INPUT_PATH"/"$assig"/"$dir"/"$base"
+        done
+done

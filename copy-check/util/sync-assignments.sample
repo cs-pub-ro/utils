@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#
+# Use rsync to retrieve assignment files from remote system.
+#
+# 2011, Razvan Deaconescu, razvan.deaconescu@cs.pub.ro
+#
+
+RSYNC=/usr/bin/rsync
+SSH=/usr/bin/ssh
+KEY=/home/razvan/.ssh/id_rsa
+RUSER=so
+RHOST=elf.cs.pub.ro
+
+# Use --update in case files have been modified local
+# (e.g. by the clean script).
+OPTS="-rptgoDvz --update --exclude .git/ --exclude *.zip --exclude **/results/ --exclude submission-config"
+
+RPATH=/home/so/vmchecker-storer/repo/
+LPATH=/home/razvan/copy-check/so/store/2010-2011/
+
+cd $LPATH && $RSYNC $OPTS -e "$SSH -i $KEY" $RUSER@$RHOST:$RPATH $LPATH

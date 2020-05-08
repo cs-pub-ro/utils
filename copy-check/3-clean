@@ -1,0 +1,64 @@
+#!/bin/bash
+
+#
+# Moss allows only ASCII files. It would be best if upload system
+# (i.e. vmchecker) would deny uploading non-ASCII files.
+# Work around that by using iconv to convert files to ASCII format.
+# Use -c argument to iconv to omit invalid characters.
+#
+# 2011, Razvan Deaconescu, razvan.deaconescu@cs.pub.ro
+#
+
+usage()
+{
+    echo "Usage: $0 [assigment]" 1>&2
+    echo -e "\t\`assigment\' may be 0lin, 1lin, 1win, 2lin, 2win, 3lin, 3win, 4lin, 4win, 5lin, 5win" 1>&2
+    echo -e "\tIn case \`assignment\' is not present go through all." 1>&2
+    echo
+}
+
+if test $# -gt 1; then
+    usage
+    exit 1
+fi
+
+BASEDIR=$(dirname $0)
+source "$BASEDIR"/copy-check.conf
+
+INPUT_PATH="$BASEDIR"/"$INPUT"
+
+# By default, clean files in all assigments. In case argument is passed to
+# script, clean files pertaining to the given assignment.
+assig_list="0lin 1lin 1win 2lin 2win 3lin 3win 4lin 4win 5lin 5win"
+if test $# -ge 1; then
+    assig_list="$@"
+fi
+
+# Go through all assignments.
+for assig in $assig_list; do
+    (
+    echo "Going through $assig..." 1>&2
+    # Proper handling of file names.
+    IFS="$(printf '\n\t')"
+    # Go through all files.
+    for f in $(find "$INPUT_PATH"/"$assig" -type f); do
+        from_code=""
+
+        # Detect non-ASCII file by using `file' command.
+        output=$(file "$f")
+        grep -q "UTF-8" <<<"$output" && from_code="UTF-8"
+        grep -q "UTF-16" <<<"$output" && from_code="UTF-16"
+        grep -q "ISO-8859" <<<"$output" && from_code="ISO-8859-10"
+        if ! test -z "$from_code"; then
+            #echo "$from_code to ASCII: $f"
+            iconv -c --from-code "$from_code" --to-code ASCII "$f" > iconv.tmp
+            # Use cp instead of mv to maintain hard link.
+            cp iconv.tmp "$f"
+        fi
+        # If non-ASCII remove it.
+        output=$(file "$f")
+        grep "ASCII" <<<"$output" 2>&1 > /dev/null || rm -f $f
+    done
+    rm -f iconv.tmp
+    )
+done

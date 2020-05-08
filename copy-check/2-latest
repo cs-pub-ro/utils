@@ -1,0 +1,286 @@
+#!/bin/bash
+
+#
+# Keep only the latest (the most recent) assignment folder. Delete the rest.
+#
+# 2011, Razvan Deaconescu, razvan.deaconescu@cs.pub.ro
+#
+
+
+all_but_latest_0lin()
+{
+    for ufolder in $(find $INPUT_PATH/0lin/2010-2011/0-HashTable-linux/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_1lin()
+{
+    for ufolder in $(find $INPUT_PATH/1lin/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1lin/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1lin/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1lin/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1lin/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1lin/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1lin/2010-2011/1-minishell-linux/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_1win()
+{
+    for ufolder in $(find $INPUT_PATH/1win/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1win/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1win/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1win/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1win/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1win/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/1win/2010-2011/1-minishell-windows/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_2lin()
+{
+    for ufolder in $(find $INPUT_PATH/2lin/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/2lin/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/2lin/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/2lin/2010-2011/2-crypto-linux/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_2win()
+{
+    for ufolder in $(find $INPUT_PATH/2win/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/2win/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/2win/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/2win/2010-2011/2-crypto-windows/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_3lin()
+{
+    for ufolder in $(find $INPUT_PATH/3lin/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3lin/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3lin/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3lin/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3lin/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3lin/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3lin/2010-2011/3-vm-lin/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_3win()
+{
+    for ufolder in $(find $INPUT_PATH/3win/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3win/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3win/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3win/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3win/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3win/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/3win/2010-2011/3-vm-win/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_4lin()
+{
+    for ufolder in $(find $INPUT_PATH/4lin/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4lin/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4lin/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4lin/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4lin/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4lin/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4lin/2010-2011/4-monitor-lin/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_4win()
+{
+    for ufolder in $(find $INPUT_PATH/4win/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4win/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4win/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4win/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4win/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4win/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/4win/2010-2011/4-monitor-win/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_5lin()
+{
+    for ufolder in $(find $INPUT_PATH/5lin/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5lin/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5lin/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5lin/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5lin/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5lin/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5lin/2010-2011/5-aws-linux/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+all_but_latest_5win()
+{
+    for ufolder in $(find $INPUT_PATH/5win/2003-2004/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5win/2004-2005/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5win/2005-2006/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5win/2006-2007/ -mindepth 2 -maxdepth 2 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5win/2007-2008/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5win/2007-2008s2/stud/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 3 -maxdepth 3 -type d | sort | head -n -1
+    done
+    for ufolder in $(find $INPUT_PATH/5win/2010-2011/5-aws-windows/ -mindepth 1 -maxdepth 1 -type d); do
+        find $ufolder/ -mindepth 1 -maxdepth 1 -type d | sort | head -n -1
+    done
+}
+
+
+usage()
+{
+    echo "Usage: $0 [assigment]" 1>&2
+    echo -e "\t\`assigment\' may be 0lin, 1lin, 1win, 2lin, 2win, 3lin, 3win, 4lin, 4win, 5lin, 5win" 1>&2
+    echo -e "\tIn case \`assignment\' is not present go through all." 1>&2
+    echo
+}
+
+if test $# -gt 1; then
+    usage
+    exit 1
+fi
+
+
+BASEDIR=$(dirname $0)
+source "$BASEDIR"/copy-check.conf
+
+INPUT_PATH="$BASEDIR"/"$INPUT"
+NON_LATEST_TMP_PATH="$BASEDIR"/"$NON_LATEST_TMP"
+
+
+# By default, select soure code files in all assigments. In case argument
+# is passed to script, select file pertaining to the given assignment.
+assig_list="0lin 1lin 1win 2lin 2win 3lin 3win 4lin 4win 5lin 5win"
+
+if test $# -ge 1; then
+    assig_list="$@"
+fi
+
+# Pass through assigment list and call appropiate function.
+for assig in $assig_list; do
+    echo "Going through $assig ..." 1>&2
+
+    # Remove all but latest folder.
+    all_but_latest_$assig | tee --append "$NON_LATEST_TMP_PATH" | \
+        xargs rm -fr
+done

@@ -1,0 +1,103 @@
+copy-check utility for detecting plagiarism using Moss.
+	(http://cs.stanford.edu/~aiken/moss/)
+
+= Usage steps =
+
+I. Copy/sync assignment files locally
+
+Files are stored in the `store/' folder. You should create a folder
+identifying the year of study.
+
+You may use the `util/sync-assignments.sample' script. I recommend
+copying it to the "year of study" folder, updating and running it.
+
+II. Reset generated data
+
+Generated data from a previous run should be removed. Use the `0-reset'
+script:
+	./0-reset
+
+You may also use the script for "resetting" generated data for a single
+assignment.
+	./0-reset 1lin
+
+III. Select files to be submitted to Moss
+
+In case this is the first time you run copy-check for that year of
+study, update the `select_*' function in the `1-select' script
+accordingly. Each function selects source code files (usually C and C++)
+that are going to be submitted to Moss.
+
+Run the script:
+	./1-select
+
+If you only want to select files pertaining to a given assignment, pass
+the assignment identifier to the script:
+	./1-select 1lin
+
+Files are, by default, stored in the `moss-input/' folder. A subfolder
+is created for each assignment (`1lin', `1win' etc.)
+
+To save disk space and speed, a hard link to the original file is
+created in the `moss-input/' folder.
+
+Files of the select process are listed in `tmp/select.out'.
+
+IV. Keep only latest submission
+
+As a user creates multiple submissions for a given assignment, only the
+latest one should be kept. Otherwise, a lot of "copy noise" is output by
+Moss. Use the `2-latest' script to remove all but the latest assignment
+from the transient `moss-input/' folder.
+
+Run the script:
+	./2-latest
+
+If you only want to delete files pertaining to a given assignment, pass
+the assignment identifier to the script:
+	./2-latest 1lin
+
+V. Clean up file to be submitted to Moss
+
+Moss only accepts ASCII files. UTF-8, UTF-16 etc. files have to be
+converted.  It would be best if this were handled by the upload system
+(i.e. vmchecker).
+
+iconv is run for each non-ASCII file and converted into ASCII:
+	./3-clean
+
+As with the select script, a given assignment id may be passed to the
+script to only clean up files belonging to that assignment
+	./3-clean 1lin
+
+Files are "converted" in place.
+
+VI. Submit files to Moss
+
+Use the check script:
+	./4-check
+
+The log provided by Moss is also stored in `moss-output/'. The last line
+in the log is an URL pointing to Moss web output.
+
+You may pass a single assignment to the script.
+	./4-check 1lin
+
+= Files =
+
+README		- this file
+
+0-reset		- Bash script for resetting generated data script
+1-select	- Bash script for selecting C/C++ files for Moss
+2-latest	- Bash script for keeping only the latest submission
+3-clean		- Bash script convert non-ASCII files to ASCII format
+4-check		- Bash script for submit files to Moss
+copy-check.conf	- configuration file; file/folder configuration for Moss
+
+bin/moss	- Moss submission script
+
+store/		- assignment storage
+moss-input/	- transient storage for "to-be submitted to Moss" files
+moss-output/	- log files outputted by Moss
+util/		- various scripts and utilities
+tmp/		- temporary folder

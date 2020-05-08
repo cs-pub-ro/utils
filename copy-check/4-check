@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#
+# Submit files to Moss to detect software plagiarism.
+#
+# 2011, Razvan Deaconescu, razvan.deaconescu@cs.pub.ro
+#   based on previous work by Octavian Purdila
+#
+
+usage()
+{
+    echo "Usage: $0 [assigment]" 1>&2
+    echo -e "\t\`assigment\' may be 0lin, 1lin, 1win, 2lin, 2win, 3lin, 3win, 4lin, 4win, 5lin, 5win" 1>&2
+    echo -e "\tIn case \`assignment\' is not present go through all." 1>&2
+    echo
+}
+
+if test $# -gt 1; then
+    usage
+    exit 1
+fi
+
+BASEDIR=$(dirname $0)
+source "$BASEDIR"/copy-check.conf
+
+INPUT_PATH="$BASEDIR"/"$INPUT"
+OUTPUT_PATH="$BASEDIR"/"$OUTPUT"
+MOSS_PATH="$BASEDIR"/"$MOSS"
+
+# By default, check soure code files in all assigments. In case argument
+# is passed to script, check files pertaining to the given assignment.
+assig_list="0lin 1lin 1win 2lin 2win 3lin 3win 4lin 4win 5lin 5win"
+if test $# -ge 1; then
+    assig_list="$@"
+fi
+
+# Run Moss on files pertaining to each assignment.
+for assig in $assig_list; do
+    (
+    set -e
+    pushd $INPUT_PATH/"$assig" 2>&1
+    2>&1 ../../bin/moss -l c -m 5 $(find -type f)
+    popd 2>&1 > /dev/null
+    ) | tee "$OUTPUT_PATH"/"$assig".log
+done
