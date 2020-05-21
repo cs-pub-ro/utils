@@ -29,7 +29,7 @@ The script expects there could be more than one test to extract grades from, and
  * `exam_numbers` - a list of test numbers to extract grades from, separated by spaces. Exactly one identifier in the list must in the name of a file. For example, to get grades from tests 5, 6, and 7, use "5 6 7".
  * `field_separator` - the field separator used when outputting the grades. For a comma-separated output, use ','.
 
-CSV files are only differentiated by their names, and they must contain exactly one identifier from each `exam_classes` and `exam_numbers`, and must be the only file that matches the pattern - e.g., there cannot be two files named `CA-Test-2-a.csv` and `CA-Test-2-b.csv`, if the values of the fields contain `CA`, and `2`, respectively, since both files match both criteria.
+CSV files are only differentiated by their names, and they must contain exactly one identifier from each `exam_classes` and `exam_numbers`, and must be the only file that matches the pattern - e.g., there cannot be two files named `CA-Test-2-a.csv` and `CA-Test-2-b.csv`, if the values of the fields contain `CA`, and `2`, respectively, since both files match both criteria. The characters around the number must be a non-alphanumeric (e.g., can be a space ' ' or dash '-', but cannot be a letter or number).
 
 The output is a list of values, separated by `field_separator`, where the first value is the username, followed by the grades for each test.
 
