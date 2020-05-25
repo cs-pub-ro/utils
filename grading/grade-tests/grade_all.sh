@@ -34,6 +34,11 @@ for N in ${EXAM_NUMS}; do
         CRT_FILE=$(find "${CSV_DIR}" -maxdepth 1 -type f -name "*${S}*[^[:alnum:]]${N}[^[:alnum:]]*")
         [ -z "${CRT_FILE}" ] && continue
 
+        if [ $(echo "${CRT_FILE}" | wc -l) -ne 1 ]; then
+            echo "Too many matches for ${S} / ${N}" >&2
+            exit 2
+        fi
+
         sed -e '/Nume,Prenume,"Adresă email",State,"Început la",Completat,"Timp încercare"/d' \
             -e '/"Medie generală"/d'                                                          \
             -e 's/^\xEF\xBB\xBF//'                                                            \
