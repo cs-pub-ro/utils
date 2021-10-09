@@ -1,0 +1,9 @@
+[server]
+	url = my.email.server
+	port = 465
+[sender]
+	name = Super Awesome
+	email = me@me.com
+	password = sr0ngp422
+[email]
+	pause = 3

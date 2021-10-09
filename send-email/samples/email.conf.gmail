@@ -1,0 +1,9 @@
+[server]
+	url = smtp.gmail.com
+	port = 587
+[sender]
+	name = Razvan Deaconescu
+	email = my-email@gmail.com
+	password = my-password
+[email]
+	pause = 3

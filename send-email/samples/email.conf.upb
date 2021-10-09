@@ -1,0 +1,9 @@
+[server]
+	url = mail.upb.ro
+	port = 465
+[sender]
+	name = Razvan Deaconescu
+	email = razvan.deaconescu@upb.ro
+	password = my-upb-password
+[email]
+	pause = 3
