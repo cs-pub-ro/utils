@@ -72,7 +72,7 @@ Fiecare foaie publică folosește formule pentru a completa celulele cu informa�
 toate actualizările ar trebui să se întâmple numai în foile private.
 
 Utilizând `File -> Sharing -> Publish to the web` în documentul Google, publicăm fiecare foaie publică (toate cele 5 foi).
-Astfel, catalogul public este disponibil [aici](https://docs.google.com/spreadsheets/d/e/2PACX-1vRxo6bv-PerDoeGJzRwAAmZdbjlISUf3qZQ52waqyq5dx5csYosnu3S9peS5q9BWP5oiT9Iz).
+Astfel, catalogul public este disponibil [aici](https://docs.google.com/spreadsheets/d/e/2PACX-1vRxo6bv-PerDoeGJzRwAAmZdbjlISUf3qZQ52waqyq5dx5csYosnu3S9peS5q9BWP5oiI9EMz_EqTFk/pubhtml).
 Rețineți că linkul pentru fiecare foaie are un sufix `?gid=...&single=true`;
 eliminați acest sufix și toate foile publice sunt disponibile la același link, ca taburi separate.
 
