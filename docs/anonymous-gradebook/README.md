@@ -84,12 +84,31 @@ This will remove the possibility for students to infer their name by their place
 
 Sorting entries is done by selecting the range in the spreadsheet document and sorting it by the unique identifier column.
 
-## Send Unique Identifiers to Students
+### Send Unique Identifiers to Students
 
-Students have to be privately delivered their unique identifiers.
+Students have to be privately delivered their unique identifiers. This can be done either by mail or by creating an assignment on the course page. 
+
+### mail
 
 We recommend you use the [send-mail set of Python scripts](https://github.com/systems-cs-pub-ro/utils/tree/master/send-email) for that.
 You will create a CSV file with four columns: `firstname`, `lastname`, `email`, `identifier`.
 Compose a generic templated message and use the `$identifier` construct to have it replaced with the per-student identifier.
 
 Use the sample message in the `message.txt` file in this folder.
+
+### Assignment
+
+To add UUID as feedback for an Assignment activity:
+
+* From course page, go `Turn editing on` -> `Add an activity or resource` -> `Assignment` -> `UUID` and:
+
+    * untick  **all** ticks from `Availability`.
+    * untick `Online text` and `File submission` from `Submission types` 
+    * Feedback types bife **only** pentru `Feedback comments` and `Offline grading worksheet`.
+
+
+* From Moodle, click on activity `UUID` -> `Settings` -> `View all submissions` -> `Grading action` ... `Download grading worksheet`, which downloads a csv.
+
+*  Locally, open the csv -> modify **only** the column `Feedback comments` with `UUID-ul`-> `Save`
+
+* From Moodle, click on activity `UUID` -> `Settings` -> `View all submissions` -> `Grading action` ... `Upload grading worksheet` -> choose the modified csv-> verify the mapping between code and student -> `Confirm`.
