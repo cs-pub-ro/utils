@@ -85,10 +85,29 @@ Sortarea intrărilor se face selectând intervalul (*range*) din documentul foii
 
 ## Trimiterea identificatorilor unici către studenți
 
-Studenții trebuie să primească în mod privat identificatorii lor unici.
+Studenții trebuie să primească în mod privat identificatorii lor unici. Acest lucru se poate face prin mail sau prin crearea unei sarcini de lucru.
+
+### mail 
 
 Recomandăm să utilizați [setul de scripturi Python](https://github.com/systems-cs-pub-ro/utils/tree/master/send-email) pentru asta.
 Veți crea un fișier CSV cu patru coloane: `firstname`, `lastname`, `email`, `identifier`.
 Compuneți un șablon (*template*) de mesaj și utilizați construcția `$identifier` pentru a înlocui în mesajul trimis identificator pentru fiecare student.
 
 Utilizați exemplul de mesaj din fișierul `message.txt` din acest director.
+
+### sarcină de lucru
+
+Pentru a adăuga UUID-ul ca feedback pentru o activitate de tip sarcină de lucru:
+ 
+*  Din Moodle mergeți la `Turn editing on` -> `Add an activity or resource` -> `Assignment` -> `UUID` și:
+
+    * debifați **toate** bifele de la `Availability`.
+    * debifați `Online text` și `File submission` la `Submission types` 
+    * Feedback types bife **doar** pentru `Feedback comments` și `Offline grading worksheet`.
+
+
+* Din Moodle, click pe activitatea `UUID` -> `Settings` -> `View all submissions` -> `Grading action` ... `Download grading worksheet` care descarcă un csv.
+
+*  De pe local, deschideți csv-ul -> completați **doar** coloana `Feedback comments` cu `UUID-ul`-> Save
+
+* Din Moodle, click pe activitatea `UUID` -> `Settings` -> `View all submissions` -> `Grading action` ... `Upload grading worksheet` -> alegeți csv-ul modificat mai devreme -> Verificați că se mapează OK codul cu studentul -> `Confirm`.
