@@ -12,7 +12,7 @@ import argparse
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-
+CALENDAR_ID = 'd2biu4r5gcv83ndamn6tpe0onc@group.calendar.google.com'
 
 def main():
     """
@@ -24,7 +24,24 @@ def main():
                         help="path to csv file with Calendar planning")
     parser.add_argument('-l', '--log_file', type=str, default='created-events.log',
                         help="path to log file")
+    parser.add_argument('-cid', '--calendar_id', type=str,
+                        help="Google Calendar ID that will be updated by the current script")
     args = parser.parse_args()
+
+    if args.calendar_id is None:
+        print("Make sure you set your calendarId. Do you wish to continue? y/n")
+        user_continue = input()
+        if user_continue.lower() not in "yn" or len(user_continue) == 0:
+            print("Please input y or n. Aborting")
+            sys.exit(1)
+        elif user_continue.lower() != "y":
+            print("Set calendarId and then rerun. Exiting")
+            sys.exit(0)
+
+        # If user wants to continue, assume he set the global value CALENDAR_ID
+        args.calendar_id = CALENDAR_ID
+
+    print(args.calendar_id)
 
     creds = None
     """
@@ -55,7 +72,7 @@ def main():
         log_file.write("[{0}] Creating events\n".format(now))
         for event in events:
             # Call the Calendar API
-            event_result = service.events().insert(calendarId='d2biu4r5gcv83ndamn6tpe0onc@group.calendar.google.com',
+            event_result = service.events().insert(calendarId=args.calendar_id,
                                                    body=event,
                                                    sendNotifications=True).execute()
             log_file.write("Event created for: {0}. Link: {1}\n".format(event['summary'], event_result.get('htmlLink')))
@@ -82,14 +99,14 @@ def get_events_from_csv(csv_file):
         start_date = '{2}-{0}-{1}'.format(*event['Start Date'].split('/'))
         start_time_hlp = event['Start Time'].split(' ')
         start_time = [int(x) for x in start_time_hlp[0].split(':')]
-        if start_time_hlp[1].lower() == 'pm':
+        if (start_time_hlp[1].lower() == 'pm') and (start_time[0] != 12):
             start_time[0] += 12
         start_time = ':'.join([str(x) for x in start_time])
 
         end_date = '{2}-{0}-{1}'.format(*event['End Date'].split('/'))
         end_time_hlp = event['End Time'].split(' ')
         end_time = [int(x) for x in end_time_hlp[0].split(':')]
-        if end_time_hlp[1].lower() == 'pm':
+        if (end_time_hlp[1].lower() == 'pm') and (end_time[0] != 12):
             end_time[0] += 12
         end_time = ':'.join([str(x) for x in end_time])
 
@@ -97,14 +114,14 @@ def get_events_from_csv(csv_file):
             'summary': event['Subject'],
             'location': event['Location'],
             'start': {
-                'dateTime': '{0}T{1}+02:00'.format(start_date, start_time),
+                'dateTime': '{0}T{1}'.format(start_date, start_time),
                 'timeZone': 'Europe/Bucharest'
             },
             'end': {
-                'dateTime': '{0}T{1}+02:00'.format(end_date, end_time),
+                'dateTime': '{0}T{1}'.format(end_date, end_time),
                 'timeZone': 'Europe/Bucharest'
             },
-            'attendees': [ {'email': guest} for guest in event['Guests'].split(' ') if guest != '']
+            'attendees': [ {'email': guest} for guest in event['Email'].split(' ') if guest != '']
         }
 
         gapi_events.append(event_json)
