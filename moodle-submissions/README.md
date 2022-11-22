@@ -20,15 +20,16 @@ Verbose output of the script is flushed to `log.txt`. The file can be changed by
 
 If the `-keep` option is used, the sript keeps the intermediate directories created during processing, which have the following structure:
 
+```
 current directory
-|
-└─ assignment		// a directory with the same name as the archive
+  |
+  └─ assignment		// a directory with the same name as the archive
     |
     └─ 1original
     └─ 2unarchived
     └─ 3selected
     └─ 4files -- present only of the `select-file` argument is present.
-    
+```
 
 `1original` contains the original, unzipped, content of the archive, with 1 directory per student.
 `2unarchived` contains one directory per student, with the following properties:
