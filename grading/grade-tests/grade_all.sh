@@ -12,7 +12,6 @@ fi
 
 SCRIPT=$(readlink -f $0)
 SCRIPT_DIR="${SCRIPT%/*}"
-TMP_DIR=$(mktemp -d "${SCRIPT_DIR}/tmp.XXXXXX")
 
 CSV_DIR="${1}"
 CLASSES="${2}"
@@ -24,6 +23,7 @@ if [ ! -d "${CSV_DIR}" ]; then
     exit 2
 fi
 
+TMP_DIR=$(mktemp -d "${SCRIPT_DIR}/tmp.XXXXXX")
 mkdir -p "${TMP_DIR}"
 
 for N in ${EXAM_NUMS}; do
@@ -31,8 +31,13 @@ for N in ${EXAM_NUMS}; do
     rm -f "${RESULT_FILE}"
 
     for S in ${CLASSES}; do
-        CRT_FILE=$(find "${CSV_DIR}" -maxdepth 1 -type f -name "*${S}*${N}*")
+        CRT_FILE=$(find "${CSV_DIR}" -maxdepth 1 -type f -name "*${S}*[^[:alnum:]]${N}[^[:alnum:]]*")
         [ -z "${CRT_FILE}" ] && continue
+
+        if [ $(echo "${CRT_FILE}" | wc -l) -ne 1 ]; then
+            echo "Too many matches for ${S} / ${N}" >&2
+            exit 2
+        fi
 
         sed -e '/Nume,Prenume,"Adresă email",State,"Început la",Completat,"Timp încercare"/d' \
             -e '/"Medie generală"/d'                                                          \
