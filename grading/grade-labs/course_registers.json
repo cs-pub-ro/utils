@@ -1,0 +1,35 @@
+{
+    "TODO: Course name": {
+        "register_id": "TODO: the ID of the course register",
+        "register_ids_col": "TODO: the column of the register sheet that contains the students' IDs",
+        "register_grade_cols": [
+            "",
+            "TODO: the columns of the register sheet that contain the students' grades",
+            "The first element should be empty if labs start from 1 (not 0) so element i matches lab i"
+        ],
+        "register_sheets": [
+            "TODO: The names of the sheets in the register",
+            "Usually corespond to the names of the series"
+        ],
+        "ta_col": "TODO: The column of the register sheet that contains the students' TAs",
+        "attendance_ids": {
+            "group": "TODO: the ID of the course register"
+        },
+        "attendance_ids_col": "TODO: the column of the attendance sheet that contains the students' IDs",
+        "attendance_grade_col": "TODO: the column of the register sheet that contains the students' grades"
+    },
+
+    "Sample-Course": {
+        "register_id": "12345abcdef",
+        "register_ids_col": "AO4:AO",
+        "register_grade_cols": ["", "U4:U", "V4:V", "W4:W", "X4:X", "Y4:Y", "Z4:Z", "AA4:AA",
+            "AB4:AB", "AC4:AC", "AD4:AD", "AE4:AE", "AF4:AF", "AG4:AG"],
+        "register_sheets": ["CA", "CB", "CC", "CD", "Altii"],
+        "ta_col": "E4:E",
+        "attendance_ids": {
+            "326CX": "67890ghijkl"
+        },
+        "attendance_ids_col": "C2:C",
+        "attendance_grade_col": "I2:I"
+    }
+}
